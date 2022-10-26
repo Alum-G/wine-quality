@@ -1,3 +1,7 @@
 dvc
 dvc[gdrive]
 sklearn
+PyYAML
+argparse
+numpy == 1.23.4
+pandas == 1.5.1

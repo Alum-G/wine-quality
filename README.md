@@ -34,4 +34,6 @@ dvc init
 ```
 
 add commit to git
+```bash
 git add . && git commit -m "first commit"
+```
