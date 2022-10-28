@@ -1,0 +1,9 @@
+stages:
+  load_data:
+    cmd: python src/loadData.py --configuration=params.yaml
+    deps:
+    - src/getData.py
+    - src/loadData.py
+    - dataset/winequality.csv
+    outs:
+    - data/raw/winequality.csv

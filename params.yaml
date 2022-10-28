@@ -14,9 +14,6 @@ split_data:
   test_path: data/processed/winequality.csv
   test_size: 0.2
 
-
-estimators:
-
 estimators:
   ElasticNet:
     params:
@@ -24,16 +21,8 @@ estimators:
       # l1_ratio: 0.89
       alpha: 0.9
       l1_ratio: 0.4
-
-
-saved_models:
   model_dir: saved_models
 
-data_preprocessing:
-  preprocessed_data_dir: data/preprocessed_data
-  null_values_csv: null_values.csv
-
-  preprocessed_data_dir_pred: data/preprocessed_data_pred
 
 
  
