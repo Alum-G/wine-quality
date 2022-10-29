@@ -1,7 +1,7 @@
 base:
   project: wine-quality-project
   random_state: 42
-  target_col: Output
+  target_col: TARGET
 
 data_source:
   s3_source: dataset/winequality.csv
@@ -22,3 +22,7 @@ estimators:
       alpha: 0.9
       l1_ratio: 0.4
   model_dir: saved_models
+
+report:
+  parameters: report/parameters.json
+  scores: report/scores.json
