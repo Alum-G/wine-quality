@@ -2,11 +2,13 @@ import argparse
 import os
 import pandas as pd
 import numpy as np
+import json
+import joblib
 from sklearn.linear_model import ElasticNet
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 from getData import read_configurations
-import json
+
 
 
 def metrics(actual, pred):
@@ -20,6 +22,7 @@ def train_and_evaluate(configuration_path):
     train_data_path = configuration["split_data"]["training_path"]
     test_data_path = configuration["split_data"]["test_path"]
     random_state = configuration["base"]["random_state"]
+    model_dir = configuration["model_dir"]
 
     alpha = configuration["estimators"]["ElasticNet"]["params"]["alpha"]
     l1_ratio = configuration["estimators"]["ElasticNet"]["params"]["l1_ratio"]
@@ -37,14 +40,14 @@ def train_and_evaluate(configuration_path):
 
     
 
-    lr = ElasticNet(
+    en = ElasticNet(
         alpha = alpha,
         l1_ratio = l1_ratio,
         random_state = random_state
         )
 
-    lr.fit(train_x, train_y)
-    predicted_values = lr.predict(test_x)
+    en.fit(train_x, train_y)
+    predicted_values = en.predict(test_x)
 
     (rmse, mae, r2) = metrics(test_y, predicted_values)
 
@@ -70,6 +73,11 @@ def train_and_evaluate(configuration_path):
             "l1_ratio" : l1_ratio,
         }
         json.dump(parameters, g)
+
+    os.makedirs(model_dir, exist_ok = True)
+    model_path = os.path.join(model_dir, "model.joblib")
+
+    joblib.dump(en, model_path)
 
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
