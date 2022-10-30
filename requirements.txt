@@ -6,3 +6,4 @@ tox
 pytest
 numpy
 pandas
+flake8

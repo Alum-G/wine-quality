@@ -10,6 +10,6 @@ src.egg-info/PKG-INFO
 src.egg-info/SOURCES.txt
 src.egg-info/dependency_links.txt
 src.egg-info/top_level.txt
-tests/__init__.py
-tests/conftest.py
-tests/test_config.py
+test_sample/__init__.py
+test_sample/conftest.py
+test_sample/test_config.py
